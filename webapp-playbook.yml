@@ -22,7 +22,9 @@
         enabled: yes
     
     - name: Create Application Database
-      mysql_db: name=employee_db state=present
+      mysql_db: 
+        name: employee_db 
+        state: present
 
     # docs.ansible.com/ansible/latest/mysql_user_module.html
     - name: Create database user with name 'bob' and password '12345' with all database privileges
@@ -31,7 +33,6 @@
         password: Passw0rd
         priv: '*.*:ALL'
         state: present
-        host: '%'
     
     - name: Install Python Flask dependency
       yum: name={{ item }} state=present
