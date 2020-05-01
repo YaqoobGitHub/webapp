@@ -31,7 +31,8 @@
         password: Passw0rd
         priv: '*.*:ALL'
         state: present
-
+        host: '%'
+    
     - name: Install Python Flask dependency
       yum: name={{ item }} state=present
       with_items:
