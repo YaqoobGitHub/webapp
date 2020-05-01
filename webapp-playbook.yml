@@ -6,7 +6,6 @@
       loop:
         - python
         - python-setuptools
-        - "Development Tools"
         - build-essential
         - python-pip
 
