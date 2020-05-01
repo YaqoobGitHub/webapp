@@ -6,7 +6,7 @@
       loop:
         - python
         - python-setuptools
-        - build-essential
+        - python-devel
         - python-pip
 
     - name: Install MySQL database 
