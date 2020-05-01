@@ -1,5 +1,48 @@
 - name: Deploy a web application
   hosts: redhat7-1, redhat7-2
   tasks: 
-    - name: Ping
-      ping:
+    - name: Install all required dependencies
+      yum: name={{ item }} state=insall 
+      with_items:
+        - python
+        - python-setuptool
+        - python-dev
+        - build-essential
+        - python-pip
+
+    - name: Install MySQL database 
+      yum: name={{ item }} state=insall 
+      with_items:
+        - mysql-server
+        - mysql-client
+        
+    - name: Start MySQL Service
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+    
+    - name: Create Application Database
+      mysql_db: name=employee_db state=present
+
+    # docs.ansible.com/ansible/latest/mysql_user_module.html
+    - name: Create database user with name 'bob' and password '12345' with all database privileges
+      mysql_user:
+        name: db_user
+        password: Passw0rd
+        priv: '*.*:ALL'
+        state: present
+
+    - name: Install Python Flask dependency
+      yum: name={{ item }} state=present
+      with_items:
+        - flask
+        - flask-myaql 
+
+    - name: Copy Source Code
+      copy: src=app.py dest=/opt/appy.py
+
+    - name: Start Web Server
+      shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+      
+
