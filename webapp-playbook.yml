@@ -2,7 +2,7 @@
   hosts: redhat7-1, redhat7-2
   tasks: 
     - name: Install all required dependencies
-      yum: name={{ item }} state=insall 
+      yum: name={{ item }} state=insalled 
       with_items:
         - python
         - python-setuptool
@@ -11,7 +11,7 @@
         - python-pip
 
     - name: Install MySQL database 
-      yum: name={{ item }} state=insall 
+      yum: name={{ item }} state=insalled 
       with_items:
         - mysql-server
         - mysql-client
@@ -44,5 +44,5 @@
 
     - name: Start Web Server
       shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
-      
+
 
