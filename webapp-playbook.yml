@@ -12,8 +12,8 @@
     - name: Install MySQL database 
       yum: name={{ item }} state=installed 
       loop:
-        - mysql-server
-        - mysql-client
+        - mysql-community-server
+        - mysql-community-client
         
     - name: Start MySQL Service
       service:
