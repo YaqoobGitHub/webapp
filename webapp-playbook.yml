@@ -3,7 +3,7 @@
   tasks: 
     - name: Install all required dependencies
       yum: name={{ item }} state=insalled 
-      with_items:
+      loop:
         - python
         - python-setuptool
         - python-dev
@@ -12,7 +12,7 @@
 
     - name: Install MySQL database 
       yum: name={{ item }} state=insalled 
-      with_items:
+      loop:
         - mysql-server
         - mysql-client
         
