@@ -8,6 +8,7 @@
         - python-setuptools
         - python-devel
         - python-pip
+        - python-mysql
 
     - name: Install MySQL database 
       yum: name={{ item }} state=installed 
